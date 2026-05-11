@@ -33,11 +33,11 @@ blocks:
           commands:
             - checkout
             - cd 1-terraform-apply
-            - artifacts pull workflow .terraform
-            - artifacts pull workflow .terraform.lock.hcl
+            - artifact pull workflow .terraform
+            - artifact pull workflow .terraform.lock.hcl
             - terraform validate
             - terraform apply -auto-approve
-            - artifacts push workflow terraform.tfstate
+            - artifact push workflow terraform.tfstate
   - name: Use bucket
     dependencies:
       - Deploy
@@ -57,7 +57,7 @@ blocks:
       jobs:
         - name: Destroy
           commands:
-            - artifacts pull workflow .terraform
-            - artifacts pull workflow .terraform.lock.hcl
-            - artifacts pull workflow terraform.tfstate
+            - artifact pull workflow .terraform
+            - artifact pull workflow .terraform.lock.hcl
+            - artifact pull workflow terraform.tfstate
             - terraform destroy -auto-approve
